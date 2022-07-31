@@ -90,7 +90,7 @@ public class getProduct {
 		}
 	}
 	
-	public void getData(int limitPage) {
+	public void getDataPage(int limitPage) {
 		this.limitPage = limitPage;
 		this.data(limitPage);
 	}
