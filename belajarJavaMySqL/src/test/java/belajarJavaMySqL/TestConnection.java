@@ -31,16 +31,14 @@ public class TestConnection {
 
 		} catch (SQLException e) {
 		}
-		
-		//Update
+
+		// Update
 		update();
-		
-		//Delete
-		delete(27); //input id_mahasiswa
+
+		// Delete
+		delete(27); // input id_mahasiswa
 
 	}
-	
-	
 
 	/**
 	 * Created or Insert mahasiswa method
@@ -86,67 +84,59 @@ public class TestConnection {
 
 		return mahasiswaId;
 	}
-	
-	
-	
-	 /**
-     * Update mahasiswa method
-     */
-    public static void update() {
 
-        String sqlUpdate = "UPDATE mahasiswa "
-                + "SET nama_mahasiswa = ? "
-                + "WHERE id_mahasiswa = ?";
-        
-        try (Connection conn = MySQLJDBCUtil.getConnection();
-                PreparedStatement pstmt = conn.prepareStatement(sqlUpdate)) {
+	/**
+	 * Update mahasiswa method
+	 */
+	public static void update() {
 
-            // prepare data for update
-            String nama_mahasiswa = "Lily";
-            int id_mahasiswa = 12;
-            pstmt.setString(1, nama_mahasiswa);
-            pstmt.setInt(2, id_mahasiswa);
+		String sqlUpdate = "UPDATE mahasiswa " + "SET nama_mahasiswa = ? " + "WHERE id_mahasiswa = ?";
 
-            int rowAffected = pstmt.executeUpdate();
-            
-            // reuse the prepared statement
-            nama_mahasiswa = "otong";
-            id_mahasiswa = 12;
-            pstmt.setString(1, nama_mahasiswa);
-            pstmt.setInt(2, id_mahasiswa);
+		try (Connection conn = MySQLJDBCUtil.getConnection();
+				PreparedStatement pstmt = conn.prepareStatement(sqlUpdate)) {
 
-            rowAffected = pstmt.executeUpdate();
-            System.out.println(String.format("update %d", rowAffected));
+			// prepare data for update
+			String nama_mahasiswa = "Lily";
+			int id_mahasiswa = 12;
+			pstmt.setString(1, nama_mahasiswa);
+			pstmt.setInt(2, id_mahasiswa);
 
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
-    }
-    
-    
+			int rowAffected = pstmt.executeUpdate();
+
+			// reuse the prepared statement
+			nama_mahasiswa = "otong";
+			id_mahasiswa = 12;
+			pstmt.setString(1, nama_mahasiswa);
+			pstmt.setInt(2, id_mahasiswa);
+
+			rowAffected = pstmt.executeUpdate();
+			System.out.println(String.format("update %d", rowAffected));
+
+		} catch (SQLException ex) {
+			System.out.println(ex.getMessage());
+		}
+	}
+
 	/**
 	 * Delete or remove mahasiswa method
 	 */
-    public static void delete(int id) {
+	public static void delete(int id) {
 
-        String sqlDelete = "DELETE FROM mahasiswa "
-        				+"WHERE id_mahasiswa = ?";
-        
-        try (Connection conn = MySQLJDBCUtil.getConnection();
-                PreparedStatement pstmt = conn.prepareStatement(sqlDelete)) {
+		String sqlDelete = "DELETE FROM mahasiswa " + "WHERE id_mahasiswa = ?";
 
-            // prepare data for delete
-            int id_mahasiswa = id;
-            pstmt.setInt(1, id_mahasiswa);
+		try (Connection conn = MySQLJDBCUtil.getConnection();
+				PreparedStatement pstmt = conn.prepareStatement(sqlDelete)) {
 
-            int row = pstmt.executeUpdate();
-            System.out.println(String.format("delete %d", row));
+			// prepare data for delete
+			int id_mahasiswa = id;
+			pstmt.setInt(1, id_mahasiswa);
 
+			int row = pstmt.executeUpdate();
+			System.out.println(String.format("delete %d", row));
 
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
-    }
-
+		} catch (SQLException ex) {
+			System.out.println(ex.getMessage());
+		}
+	}
 
 }
