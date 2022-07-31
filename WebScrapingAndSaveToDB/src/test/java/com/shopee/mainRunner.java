@@ -5,7 +5,8 @@ package com.shopee;
  */
 public class mainRunner {
 	public static void main(String[] args) {
-		getProduct trial = new getProduct("iphone 8");
+		getProduct scrap = new getProduct("new balance 990");
+		scrap.getData(2);
 	}
 
 }
